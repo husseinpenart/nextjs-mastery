@@ -1,25 +1,25 @@
-// lib/blog.ts
+'use server';
 
-import { BlogPost } from "@/app/components/@types";
+import { z } from 'zod';
+import { connectDB } from '../mongoose';
+import { Post } from '../model/Post';
 
-const dummyPosts: BlogPost[] = [
-  {
-    slug: "hello-world",
-    title: "Hello World",
-    content: "Welcome to the blog.",
-  },
-  {
-    slug: "nextjs-app-router",
-    title: "App Router in Next.js",
-    content: "App router is amazing.",
-  },
-];
+const schema = z.object({
+  title: z.string().min(1),
+  content: z.string().optional(),
+});
 
-export async function getAllPosts(): Promise<BlogPost[]> {
-  return dummyPosts;
-}
+export async function addPost(formData: FormData) {
+  const raw = {
+    title: formData.get('title'),
+    content: formData.get('content'),
+  };
 
-export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
-  const post = dummyPosts.find((p) => p.slug === slug);
-  return post ?? null;
+  const parsed = schema.safeParse(raw);
+  if (!parsed.success) {
+    throw new Error('Validation failed');
+  }
+
+  await connectDB();
+  await Post.create(parsed.data);
 }

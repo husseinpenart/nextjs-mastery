@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
     NEXT_MONGO_CONNECTION_URL: "mongodb://localhost:27017/nextjs-mastery",
     FRONTEND_URL: "http://localhost:3000",
   },
+  output:"standalone"
 };
 
 export default nextConfig;
