@@ -11,14 +11,12 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   pages: {
-    signIn: '/Signin', // ✅ adjust if your login page path is different
+    signIn: '/Signin',
   },
   session: {
     strategy: 'jwt',
   },
-  secret: process.env.NEXTAUTH_SECRET,
 };
 
 const handler = NextAuth(authOptions);
-
 export { handler as GET, handler as POST };
