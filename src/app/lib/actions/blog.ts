@@ -17,7 +17,7 @@ export async function getAllPosts() {
   const result = await Post.find().sort({ createdAt: "desc" });
   return result;
 }
-export async function getPostBySlug(slug: string) {
+export async function getPostBySlug(slug: Promise<any>) {
 
   await connectDB();
   const result = await Post.findOne({ slug });
