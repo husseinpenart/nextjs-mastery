@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { SessionProvider } from "next-auth/react";
+import Image from "next/image";
+import { Suspense } from "react";
+import Loading from "./(pages)/loading";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,11 +30,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <header style={{ padding: 20, background: "#eee" }}>🌐 My App</header>
-        <SessionProvider>
+        <header style={{ padding: 20, background: "#eee" }}>
           {" "}
-          <main>{children}</main>
-        </SessionProvider>
+          <Image src={"/images/logo.jpg"} alt="logo" width={100} height={100} quality={100} unoptimized /> My App
+        </header>
+
+         <Suspense fallback={<Loading />}>
+             <main>{children}</main>
+         </Suspense>
         <footer style={{ padding: 20, background: "#eee" }}>© 2025</footer>
       </body>
     </html>

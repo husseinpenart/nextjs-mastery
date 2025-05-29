@@ -1,6 +1,6 @@
 'use client';
 
-import { registerUser } from '@/app/lib/auth/authAction';
+import { registerUser } from '@/src/app/lib/auth/authAction';
 import { useFormState } from 'react-dom';
 
 export default function Register() {

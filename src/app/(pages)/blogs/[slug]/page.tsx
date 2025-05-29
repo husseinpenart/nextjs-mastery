@@ -1,4 +1,4 @@
-import { getAllPosts, getPostBySlug } from "@/app/lib/actions/blog";
+import { getAllPosts, getPostBySlug } from "@/src/app/lib/actions/blog";
 import { notFound } from "next/navigation";
 
 export const generateStaticParams = async () => {
