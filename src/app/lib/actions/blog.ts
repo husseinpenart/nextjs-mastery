@@ -15,13 +15,12 @@ const schema = z.object({
 export async function getAllPosts() {
   await connectDB();
   const result = await Post.find().sort({ createdAt: "desc" });
-  revalidateTag("blog");
   return result;
 }
 export async function getPostBySlug(slug: string) {
+
   await connectDB();
   const result = await Post.findOne({ slug });
-  revalidateTag("singleBlog");
   return result;
 }
 export async function addPost(formData: FormData) {

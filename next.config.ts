@@ -10,7 +10,10 @@ const nextConfig: NextConfig = {
   },
   output: "standalone",
   images: {
-    domains: ["setare.com" , "elanet.ir"],
+    domains: ["setare.com", "elanet.ir"],
+  },
+  experimental: {
+    useCache: true,
   },
 };
 

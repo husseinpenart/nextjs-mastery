@@ -4,6 +4,7 @@ import "./globals.css";
 import Image from "next/image";
 import { Suspense } from "react";
 import Loading from "./(pages)/loading";
+import { WebVitals } from "./components/WebVitals";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,12 +33,21 @@ export default function RootLayout({
       >
         <header style={{ padding: 20, background: "#eee" }}>
           {" "}
-          <Image src={"/images/logo.jpg"} alt="logo" width={100} height={100} quality={100} unoptimized /> My App
+          <Image
+            src={"/images/logo.jpg"}
+            alt="logo"
+            width={100}
+            height={100}
+            quality={100}
+            unoptimized
+          />{" "}
+          My App
         </header>
 
-         <Suspense fallback={<Loading />}>
-             <main>{children}</main>
-         </Suspense>
+        <Suspense fallback={<Loading />}>
+          <WebVitals />
+          <main>{children}</main>
+        </Suspense>
         <footer style={{ padding: 20, background: "#eee" }}>© 2025</footer>
       </body>
     </html>
