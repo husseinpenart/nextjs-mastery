@@ -1,4 +1,5 @@
 import { getAllPosts, getPostBySlug } from "@/src/app/lib/actions/blog";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 
 export const generateStaticParams = async () => {
@@ -16,6 +17,13 @@ export default async function BlogPostPage({
 
   return (
     <article>
+      <Image
+        alt={post.title || "alt"}
+        src={post?.image?.trim()}
+        width={300}
+        height={300}
+        quality={70}
+      />
       <h1 className="text-2xl font-bold">{post.title}</h1>
       <p>{post.content}</p>
     </article>

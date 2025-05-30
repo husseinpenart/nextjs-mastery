@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { PostTypes } from "./@types";
 import Image from "next/image";
+import LoadingIndicator from "./loading-indicator";
 
 export default function BlogCard({ post }: PostTypes) {
   return (
@@ -12,10 +13,11 @@ export default function BlogCard({ post }: PostTypes) {
         width={300}
         height={300}
         quality={70}
-        
       />
       <h2>{post.title}</h2>
-      <Link href={`/blogs/${post.slug}`}>Read More</Link>
+      <Link href={`/blogs/${post.slug}`} prefetch={false}>
+        Read More <LoadingIndicator />
+      </Link>
     </div>
   );
 }

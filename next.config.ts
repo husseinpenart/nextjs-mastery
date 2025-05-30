@@ -14,6 +14,7 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     useCache: true,
+    // dynamicIO:true
   },
 };
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
